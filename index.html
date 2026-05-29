@@ -68,6 +68,40 @@
         .mint-glow-active {
             animation: subtle-glow 2s infinite ease-in-out;
         }
+
+        .lightbox-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.88);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 24px;
+        }
+        .lightbox-backdrop.active {
+            display: flex;
+        }
+        .lightbox-card {
+            width: min(96vw, 1100px);
+            max-height: 92vh;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.45);
+        }
+        .lightbox-img {
+            width: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+            display: block;
+        }
+        .lightbox-caption {
+            color: #e2e8f0;
+            padding: 14px 16px 16px;
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body class="bg-[var(--color-white)] text-[var(--color-navy)] font-sans antialiased overflow-x-hidden selection:bg-[var(--color-gold)] selection:text-[var(--color-navy)]">
@@ -281,6 +315,26 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mt-16 grid grid-cols-1 lg:grid-cols-[1.0fr_1.15fr] gap-8 reveal">
+                <div class="rounded-3xl border border-slate-200/60 bg-white p-8 shadow-sm lg:order-1">
+                    <p class="text-xs font-bold tracking-widest text-[var(--color-red)] uppercase mb-3">Personal Presence</p>
+                    <h3 class="text-2xl font-extrabold text-slate-900 mb-4">我本人與講師形象</h3>
+                    <p class="text-slate-600 leading-relaxed mb-4">這張照片是我在專業場域中的真實形象，適合放在「關於我」附近，讓訪客更容易建立信任與辨識度。</p>
+                    <p class="text-slate-600 leading-relaxed">同時也能作為品牌主視覺，搭配後續案例與授課場景一起呈現我的專業人設。</p>
+                    <div class="mt-6 flex flex-wrap gap-3 text-xs text-slate-600">
+                        <span class="rounded-full bg-slate-100 px-3 py-1">專業講師</span>
+                        <span class="rounded-full bg-slate-100 px-3 py-1">產業顧問</span>
+                        <span class="rounded-full bg-slate-100 px-3 py-1">AI 行銷實務</span>
+                    </div>
+                </div>
+                <div class="rounded-[28px] border border-slate-200/70 bg-white p-4 shadow-[0_18px_40px_-18px_rgba(15,23,42,0.35)] lg:order-2 overflow-hidden">
+                    <div class="rounded-[24px] overflow-hidden border border-slate-100 bg-slate-50 p-2">
+                        <img src="mywork/鍾皓軒-headshot-01.jpg" alt="Howard Chung 個人照片" data-lightbox="true" class="w-full h-[380px] object-cover rounded-[20px] cursor-zoom-in hover:scale-[1.02] transition-transform duration-300">
+                    </div>
+                    <p class="text-sm text-slate-500 mt-3 text-center">Howard Chung｜AI 行銷與數據分析顧問</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -469,6 +523,48 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mt-16 reveal">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+                    <div>
+                        <p class="text-xs font-bold tracking-widest text-[var(--color-red)] uppercase mb-2">Training & Project Scenes</p>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">內訓與專案現場展演</h3>
+                    </div>
+                    <p class="text-slate-600 max-w-2xl text-sm sm:text-base">這些照片記錄了我走訪內訓教室、產業展演與專案現場的實戰形象，讓品牌更有真實故事與專業感。</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                    <figure class="group overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
+                        <img src="mywork/台灣 Top3 IC設計-expo-stage-02.jpg" alt="台灣 Top3 IC設計展演場景" data-lightbox="true" class="h-56 w-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-500">
+                        <figcaption class="p-5"><span class="text-xs font-semibold text-[var(--color-red)]">展演現場</span><h4 class="text-lg font-bold text-slate-900 mt-2">IC 設計展演舞台</h4><p class="text-sm text-slate-600 mt-2">在大型產業展演中，呈現 AI 與數據行銷的實戰觀點。</p></figcaption>
+                    </figure>
+
+                    <figure class="group overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
+                        <img src="mywork/台灣 Top3 航空業-training-classroom-04.png" alt="航空業內訓課堂場景" data-lightbox="true" class="h-56 w-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-500">
+                        <figcaption class="p-5"><span class="text-xs font-semibold text-[var(--color-red)]">內訓課堂</span><h4 class="text-lg font-bold text-slate-900 mt-2">航空業培訓教室</h4><p class="text-sm text-slate-600 mt-2">協助產業團隊建立數據分析與 AI 應用的實作能力。</p></figcaption>
+                    </figure>
+
+                    <figure class="group overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
+                        <img src="mywork/台灣 Top3 電信業-training-classroom-01.png" alt="電信業內訓課堂場景" data-lightbox="true" class="h-56 w-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-500">
+                        <figcaption class="p-5"><span class="text-xs font-semibold text-[var(--color-red)]">內訓課堂</span><h4 class="text-lg font-bold text-slate-900 mt-2">電信業專業培訓</h4><p class="text-sm text-slate-600 mt-2">針對企業團隊進行數據導向的 AI 與行銷訓練。</p></figcaption>
+                    </figure>
+
+                    <figure class="group overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
+                        <img src="mywork/國科會-expo-stage-01.jpg" alt="國科會展演場景" data-lightbox="true" class="h-56 w-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-500">
+                        <figcaption class="p-5"><span class="text-xs font-semibold text-[var(--color-red)]">研究展演</span><h4 class="text-lg font-bold text-slate-900 mt-2">國科會展演舞台</h4><p class="text-sm text-slate-600 mt-2">在科技論壇與研發場域中分享數據思維與實務應用。</p></figcaption>
+                    </figure>
+
+                    <figure class="group overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
+                        <img src="mywork/工研院-training-classroom-02.png" alt="工研院訓練場景" data-lightbox="true" class="h-56 w-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-500">
+                        <figcaption class="p-5"><span class="text-xs font-semibold text-[var(--color-red)]">訓練場景</span><h4 class="text-lg font-bold text-slate-900 mt-2">工研院教學場域</h4><p class="text-sm text-slate-600 mt-2">搭配實作案例，協助學員建立從數據到決策的完整流程。</p></figcaption>
+                    </figure>
+
+                    <figure class="group overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-sm hover:shadow-xl transition-all duration-300">
+                        <img src="mywork/資策會-training-classroom-03.png" alt="資策會內訓場景" data-lightbox="true" class="h-56 w-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-500">
+                        <figcaption class="p-5"><span class="text-xs font-semibold text-[var(--color-red)]">專案訓練</span><h4 class="text-lg font-bold text-slate-900 mt-2">資策會訓練現場</h4><p class="text-sm text-slate-600 mt-2">記錄我在創新與數位轉型場域的活動與課程實況。</p></figcaption>
+                    </figure>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -597,6 +693,13 @@
     </section>
 
     <!-- 頁尾 -->
+    <div id="lightbox" class="lightbox-backdrop" aria-hidden="true" onclick="closeLightbox()">
+        <div class="lightbox-card" onclick="event.stopPropagation()">
+            <img id="lightboxImage" class="lightbox-img" src="" alt="">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
     <footer class="bg-[var(--color-navy)] text-[var(--color-gray)] py-12 border-t border-[var(--color-gold)]">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
@@ -655,7 +758,33 @@
         });
 
 
-        // === 2. 打字機特效 (Typewriter Effect) ===
+        // === 2. 圖片放大燈箱 (Lightbox) ===
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+
+        function openLightbox(src, alt) {
+            lightboxImage.src = src;
+            lightboxImage.alt = alt || '放大圖片';
+            lightboxCaption.textContent = alt || '放大圖片';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('img[data-lightbox="true"]').forEach(img => {
+            img.addEventListener('click', () => openLightbox(img.src, img.alt));
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeLightbox();
+        });
+
+        // === 3. 打字機特效 (Typewriter Effect) ===
         const typewriterPhrase = "Until Marketing Data science is common sense";
         const typewriterText = document.getElementById('typewriter-text');
         const typewriterCursor = document.getElementById('typewriter-cursor');
