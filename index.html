@@ -69,6 +69,38 @@
             animation: subtle-glow 2s infinite ease-in-out;
         }
 
+        .video-background-wrapper {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+            background: #020617;
+        }
+
+        .video-background-iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.78vh;
+            transform: translate(-50%, -50%);
+            border: 0;
+            opacity: 0.78;
+            filter: saturate(1.08) contrast(1.05);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(2, 6, 23, 0.78) 0%, rgba(2, 6, 23, 0.55) 45%, rgba(2, 6, 23, 0.82) 100%),
+                radial-gradient(circle at top, rgba(148, 163, 184, 0.12), transparent 35%);
+            z-index: 1;
+        }
+
         .lightbox-backdrop {
             position: fixed;
             inset: 0;
@@ -164,16 +196,27 @@
     </header>
 
     <!-- 2. Hero Section (首頁核心視覺區) -->
-    <section id="home" class="relative min-h-[90vh] flex items-center justify-center bg-[var(--color-white)] overflow-hidden py-16">
+    <section id="home" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-16 text-white bg-slate-950">
+        <!-- YouTube 滿版背景影片 -->
+        <div class="video-background-wrapper" aria-hidden="true">
+            <iframe
+                class="video-background-iframe"
+                src="https://www.youtube.com/embed/i-gmUH_d_8w?autoplay=1&mute=1&loop=1&playlist=i-gmUH_d_8w&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                title="Hero video background"
+            ></iframe>
+            <div class="hero-overlay"></div>
+        </div>
+
         <!-- Canvas 背景粒子網絡 -->
-        <div id="canvas-container" class="absolute inset-0 z-0 opacity-80 pointer-events-none">
+        <div id="canvas-container" class="absolute inset-0 z-0 opacity-70 pointer-events-none">
             <canvas id="particle-canvas" class="w-full h-full"></canvas>
         </div>
 
         <!-- Hero 內容主體 -->
         <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
             <!-- 頂部漸層標籤 -->
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50/50 border border-indigo-100/80 mb-8 backdrop-blur-sm animate-fade-in">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-8 backdrop-blur-md animate-fade-in shadow-lg shadow-slate-950/30">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-gold)] opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-gold)]"></span>
@@ -182,18 +225,18 @@
             </div>
 
             <!-- 主標題 (Typewriter) -->
-            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-8 font-sans">
-                <span id="typewriter-text" class="bg-gradient-to-r from-[var(--color-navy)] via-[var(--color-red)] to-[var(--color-navy)] bg-clip-text text-transparent"></span><span id="typewriter-cursor" class="cursor-blink text-[var(--color-gold)] font-medium">|</span>
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.15] mb-8 font-sans text-white drop-shadow-[0_4px_12px_rgba(15,23,42,0.35)]">
+                <span id="typewriter-text" class="bg-gradient-to-r from-white via-slate-100 to-[var(--color-gold)] bg-clip-text text-transparent"></span><span id="typewriter-cursor" class="cursor-blink text-[var(--color-gold)] font-medium">|</span>
             </h1>
 
             <!-- 副標題 -->
-            <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-12">
+            <p class="text-lg sm:text-xl text-slate-100 max-w-3xl mx-auto font-normal leading-relaxed mb-12 drop-shadow-[0_2px_6px_rgba(15,23,42,0.35)]">
                 Howard helps businesses transform knowledge, workflows, and customer experience through practical <span class="text-[var(--color-gold)] font-semibold">AI Marketing solutions</span>.
             </p>
 
             <!-- 核心亮點互動按鈕 -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://calendar.app.google/ewAk8mNsyZ5MYZdFA" target="_blank" id="hero-cta-btn" class="relative w-full sm:w-auto px-10 py-5 rounded-full border border-[var(--color-navy)]/30 bg-[var(--color-white)]/80 backdrop-blur-md shadow-sm text-[var(--color-navy)] font-bold tracking-wide transition-all duration-500 hover:border-[var(--color-gold)] flex items-center justify-center group overflow-hidden min-w-[280px]">
+                <a href="https://calendar.app.google/ewAk8mNsyZ5MYZdFA" target="_blank" id="hero-cta-btn" class="relative w-full sm:w-auto px-10 py-5 rounded-full border border-white/20 bg-white/90 backdrop-blur-md shadow-xl shadow-slate-950/35 text-[var(--color-navy)] font-bold tracking-wide transition-all duration-500 hover:border-[var(--color-gold)] flex items-center justify-center group overflow-hidden min-w-[280px]">
                     <!-- 預設文字狀態 -->
                     <span id="btn-text-default" class="relative z-10 flex items-center gap-2 transition-all duration-300 group-hover:opacity-0 group-hover:scale-95">
                         預約顧問諮詢
@@ -206,7 +249,7 @@
                     </span>
                 </a>
                 
-                <a href="#about" class="w-full sm:w-auto px-8 py-5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 font-semibold text-sm flex items-center justify-center gap-1.5">
+                <a href="#about" class="w-full sm:w-auto px-8 py-5 rounded-full text-slate-100 hover:text-white hover:bg-white/10 transition-all duration-300 font-semibold text-sm flex items-center justify-center gap-1.5 border border-white/15 backdrop-blur-md bg-white/5 shadow-lg shadow-slate-950/30">
                     瞭解更多
                     <svg class="w-4 h-4 text-[var(--color-navy)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </a>
